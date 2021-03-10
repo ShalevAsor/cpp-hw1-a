@@ -26,7 +26,7 @@ using namespace std;
  *The 2D array combination contains all the body parts of the snowman
  * 
  */
-class SnowManParts{
+struct SnowManParts{
 
     public:
         const int HAT=0; 
@@ -56,7 +56,7 @@ class SnowManParts{
         SnowManParts() = default;
 };
  // return the index of the type - if the type is 3 , the index is 2 
-int typeIndex(int type){
+int type_index(int type){
    int index= type-1; 
     return index;
 }
@@ -66,7 +66,7 @@ int ctoi(char c){
 }
 // return the string represents the hat by the given type 
 string hat(SnowManParts sp,string type){
- string hat =sp.combination.at(sp.HAT).at(typeIndex(ctoi(type[sp.HAT])));
+ string hat =sp.combination.at(sp.HAT).at(type_index(ctoi(type[sp.HAT])));
   return hat; 
 }
 /**
@@ -78,13 +78,13 @@ int left_eye_index=2;
 int nose=1; 
 int right_eye_index=3;
 // if left_hand == true the left hand is added with the head 
-if(left_hand){ head=sp.combination.at(sp.LHAND).at(typeIndex(ctoi(type[sp.LHAND])));}
+if(left_hand){ head=sp.combination.at(sp.LHAND).at(type_index(ctoi(type[sp.LHAND])));}
 // add the left eye then the nose then the right eye 
- head+=sp.combination.at(sp.LEYE).at(typeIndex(ctoi(type[left_eye_index])));
- head+=sp.combination.at(sp.NOSE).at(typeIndex(ctoi(type[nose])));
- head+=sp.combination.at(sp.REYE).at(typeIndex(ctoi(type[right_eye_index])));
+ head+=sp.combination.at(sp.LEYE).at(type_index(ctoi(type[left_eye_index])));
+ head+=sp.combination.at(sp.NOSE).at(type_index(ctoi(type[nose])));
+ head+=sp.combination.at(sp.REYE).at(type_index(ctoi(type[right_eye_index])));
 // if right_hand == true the right hand is added with the head 
-if(right_hand){head+=sp.combination.at(sp.RHAND).at(typeIndex(ctoi(type[sp.RHAND])));}
+if(right_hand){head+=sp.combination.at(sp.RHAND).at(type_index(ctoi(type[sp.RHAND])));}
   
   return head;
 }
@@ -95,10 +95,10 @@ if(right_hand){head+=sp.combination.at(sp.RHAND).at(typeIndex(ctoi(type[sp.RHAND
  */
 string top_body(SnowManParts sp,string type,bool left_hand,bool right_hand){
 string body=" ";
-if(!left_hand){ body=sp.combination.at(sp.LHAND).at(typeIndex(ctoi(type[sp.LHAND])));}// the left hand is false so the hand should added to the body
-body+=sp.combination.at(sp.TBODY).at(typeIndex(ctoi(type[sp.TBODY])));// add the top body by the given type
+if(!left_hand){ body=sp.combination.at(sp.LHAND).at(type_index(ctoi(type[sp.LHAND])));}// the left hand is false so the hand should added to the body
+body+=sp.combination.at(sp.TBODY).at(type_index(ctoi(type[sp.TBODY])));// add the top body by the given type
 
-if(!right_hand){body+=sp.combination.at(sp.RHAND).at(typeIndex(ctoi(type[sp.RHAND])));} // same as left hand
+if(!right_hand){body+=sp.combination.at(sp.RHAND).at(type_index(ctoi(type[sp.RHAND])));} // same as left hand
   
   return body;
 }
@@ -106,7 +106,7 @@ if(!right_hand){body+=sp.combination.at(sp.RHAND).at(typeIndex(ctoi(type[sp.RHAN
  * return the string represents the buttom body of the snowman 
  */
 string buttom_body(SnowManParts sp,string type){
-  string dbody=" "+sp.combination.at(sp.BBODY).at(typeIndex(ctoi(type[sp.BBODY])));  
+  string dbody=" "+sp.combination.at(sp.BBODY).at(type_index(ctoi(type[sp.BBODY])));  
     return dbody; 
 }
 
@@ -127,7 +127,7 @@ std::string ariel::snowman(int type){
     if(ctoi(input[sp.LHAND])==hand_up){left_up=true;}// the left hand should be added with the head 
     if(ctoi(input[sp.RHAND])==hand_up){right_up=true;}
     // create the snowman 
-    snowman=hat(sp,input)+'\n'+head(sp,input,left_up,right_up)+'\n'+top_body(sp,input,left_up,right_up)+'\n'+buttom_body(sp,input)+'\n';  
-    cout<<snowman;
+    snowman=hat(sp,input)+'\n'+head(sp,input,left_up,right_up)+'\n'+top_body(sp,input,left_up,right_up)+'\n'+buttom_body(sp,input);  
+    cout<<snowman<<endl;
 return snowman; 
 }
